@@ -12,7 +12,7 @@ export class AppComponent {
   public value: number = 10;
 
   constructor(private widgetService: WidgetService,
-    @Inject(ViewContainerRef) viewContainerRef) {
+    private viewContainerRef: ViewContainerRef) {
       widgetService.setRootViewContainerRef(viewContainerRef);
       
   }
