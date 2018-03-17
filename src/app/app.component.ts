@@ -1,10 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef, Inject } from '@angular/core';
+
+import { WidgetService } from './widget.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ WidgetService ]
 })
 export class AppComponent {
-  title = 'app';
+  public value: number = 10;
+
+  constructor(private widgetService: WidgetService,
+    @Inject(ViewContainerRef) viewContainerRef) {
+      widgetService.setRootViewContainerRef(viewContainerRef);
+      
+  }
+
+  ngOnInit() {
+
+  }
+
+  addKendoRadialGauge() {
+    this.widgetService.addKendoRadilGaugeWidget();
+  }
+
+  removeKendoRadialGauge() {
+    this.widgetService.removeKendoRadialGaugeWidget();
+  }
 }
